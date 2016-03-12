@@ -4,6 +4,8 @@ import android.content.Context;
 import android.test.AndroidTestCase;
 import android.util.Pair;
 
+import junit.framework.Assert;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -16,6 +18,7 @@ public class AndroidTest extends AndroidTestCase {
             FetchJokeTask jokeTask = new FetchJokeTask();
             jokeTask.execute(new Pair<Context, String>(getContext(), "Joke"));
             String joke = jokeTask.get(30, TimeUnit.SECONDS);
+            Assert.assertNotNull(joke);
         } catch (Exception e){
             fail("Timed out");
         }
